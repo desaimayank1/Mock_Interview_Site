@@ -1,5 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 export default function Header(){
+    const [showinfo,setShowinfo]=useState(0);
+    const handleShowinfoClick=()=>{
+        if(showinfo===0){
+            setShowinfo(1);
+        }else{
+            setShowinfo(0);
+        }
+    }
     return (
         <>
             <nav className="bg-gray-300">
@@ -9,7 +17,7 @@ export default function Header(){
         {/* Mobile menu button*/}
         <button
           type="button"
-          className="relative inline-flex items-center justify-center rounded-md p-2 text-grey-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          className="relative inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
@@ -61,7 +69,7 @@ export default function Header(){
         <div className="flex flex-shrink-0 items-center">
           <img
             className="h-8 w-auto"
-            src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
+            src="https://cdn-icons-png.flaticon.com/512/4942/4942358.png"
             alt="Your Company"
           />
         </div>
@@ -69,27 +77,27 @@ export default function Header(){
           <div className="flex space-x-4">
             {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
             <a
-              href="#"
-              className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+              href="/"
+              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
               aria-current="page"
             >
               Home
             </a>
             <a
-              href="#"
-              className="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-gray-700 hover:text-white"
+              href="Book"
+              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/Book'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
             >
               Book
             </a>
             <a
-              href="#"
-              className="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-gray-700 hover:text-white"
+              href="About"
+              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/About'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
             >
               About
             </a>
             <a
-              href="#"
-              className="rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-gray-700 hover:text-white"
+              href="Contact"
+              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/Contact'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
             >
               Contact
             </a>
@@ -124,6 +132,7 @@ export default function Header(){
           <div>
             <button
               type="button"
+              onClick={handleShowinfoClick}
               className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
               id="user-menu-button"
               aria-expanded="false"
@@ -137,6 +146,8 @@ export default function Header(){
                 alt=""
               />
             </button>
+            
+
           </div>
           {/*
       Dropdown menu, show/hide based on menu state.
@@ -148,15 +159,15 @@ export default function Header(){
         From: "transform opacity-100 scale-100"
         To: "transform opacity-0 scale-95"
     */}
-       <div
-            className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+    <div
+            className={`absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${showinfo?'block':'hidden'} `}
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="user-menu-button"
             tabIndex={-1}
           >
             {/* Active: "bg-gray-100", Not Active: "" */}
-            {/* <a
+            <a
               href="#"
               className="block px-4 py-2 text-sm text-gray-700"
               role="menuitem"
@@ -170,20 +181,12 @@ export default function Header(){
               className="block px-4 py-2 text-sm text-gray-700"
               role="menuitem"
               tabIndex={-1}
-              id="user-menu-item-1"
-            >
-              Settings
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700"
-              role="menuitem"
-              tabIndex={-1}
               id="user-menu-item-2"
             >
               Sign out
-            </a> */}
+            </a>
           </div>
+      
         </div>
       </div>
     </div>
