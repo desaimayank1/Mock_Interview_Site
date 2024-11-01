@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 export default function Header(){
+
     const [showinfo,setShowinfo]=useState(0);
     const handleShowinfoClick=()=>{
         if(showinfo===0){
@@ -77,27 +78,27 @@ export default function Header(){
           <div className="flex space-x-4">
             {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
             <a
-              href="/"
-              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
+              href="/for"
+              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/for'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
               aria-current="page"
             >
               Home
             </a>
             <a
-              href="Book"
-              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/Book'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
+              href="/for/Book"
+              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/for/Book'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
             >
               Book
             </a>
             <a
-              href="About"
-              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/About'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
+              href="/for/About"
+              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/for/About'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
             >
               About
             </a>
             <a
-              href="Contact"
-              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/Contact'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
+              href="/for/Contact"
+              className={`rounded-md  px-3 py-2 text-sm font-medium  ${location.pathname==='/for/Contact'?'text-white bg-gray-900':'text-black hover:bg-gray-700 hover:text-white'}`}
             >
               Contact
             </a>

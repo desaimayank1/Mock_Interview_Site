@@ -11,12 +11,15 @@ import Contact from './components/Contact.jsx'
 
 const router=createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Format/>}>
-       <Route path='' element={<Home/>}/>
-       <Route path='Book' element={<Book/>}/>
-       <Route path='About' element={<About/>}/>
-       <Route path='Contact' element={<Contact/>}/>
-    </Route>
+    <>
+      <Route path='/' element={<Login/>}/>
+       <Route path='/for' element={<Format/>}>
+        <Route path='' element={<Home/>}/>
+        <Route path='Book' element={<Book/>}/>
+        <Route path='About' element={<About/>}/>
+        <Route path='Contact' element={<Contact/>}/>
+      </Route>
+    </>
   )
 )
 function App() {
