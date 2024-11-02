@@ -1,5 +1,8 @@
 import React from "react"
 function Login(){
+  const loginwithGoogle=()=>{
+    window.open("http://localhost:3000/auth/google/callback","_self")
+  }
     return (
         <>
   <title>Responsive Tailwind Login Page</title>
@@ -16,10 +19,10 @@ function Login(){
             <input
               type="email"
               name=""
-              id=""
+              id="email"
               placeholder="Enter Email Address"
               className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
-              autofocus=""
+              autoFocus=""
               autoComplete=""
               required=""
             />
@@ -29,7 +32,7 @@ function Login(){
             <input
               type="password"
               name=""
-              id=""
+              id="password"
               placeholder="Enter Password"
               minLength={6}
               className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
@@ -58,7 +61,9 @@ function Login(){
           <p className="text-center text-sm">OR</p>
           <hr className="border-gray-500" />
         </div>
-        <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 ">
+        <button
+        onClick={loginwithGoogle}
+         className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
