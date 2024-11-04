@@ -21,7 +21,8 @@ router.post("/",async (req,res)=>{
 router.get("/",async(req,res)=>{
     try {
         const googleId=req.query.googleId;
-       const courses=await coursedb.find({userId: googleId })
+        console.log(googleId)
+       const courses=await coursedb.find({UserId:googleId})
     //    console.log(courses)
        res.status(200).send(courses)
     } catch (error) {

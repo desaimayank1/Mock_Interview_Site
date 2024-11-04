@@ -10,38 +10,44 @@ export default function Home() {
   const handleBookNowClick = () => {
     navigate("/Book"); // Replace with your desired path
   };
-   
-    // const userData = useSelector((state) => state.auth.user);
 
-  const [userData, setUserData] = useState({})
-  // console.log(userData);
+  // const userData = useSelector((state) => state.auth.user);
+  const [userData, setUserData] = useState({});
+  const [buyState, setBuyState] = useState([0, 0, 0, 0, 0, 0]);
+  const [buyCard, setBuyCard] = useState([]);
+
   const getUser = async () => {
     try {
       const response = await axios.get("http://localhost:3000/auth/success", { withCredentials: true });
-      setUserData(response.data.user)
+      setUserData(response.data.user); // Set the user data here
     } catch (error) {
-      console.log("getUser", error);
+      console.log("getUser error:", error);
     }
-  }
+  };
 
-  
-
+  // Fetch user data on mount
   useEffect(() => {
-    getUser();
-    BoughtCourses();
-  }, [])
+    const fetchData = async () => {
+      await getUser();
+    };
+    fetchData();
+  }, []);
 
-
-  const [buyState, setBuyState] = useState([0, 0, 0, 0, 0, 0])
-  const [buyCard, setBuyCard] = useState([])
+  // Trigger BoughtCourses only when userData is available
+  useEffect(() => {
+    if (userData) {
+      BoughtCourses();
+    }
+  }, [userData]);
 
   const BoughtCourses = async () => {
+    console.log("BoughtCourses with userData:", userData);
     try {
       const response = await axios.get("http://localhost:3000/course", {
         params: { googleId: userData.googleId }
       });
       if (response) {
-        console.log("Got our Course", response.data);
+        console.log("Courses fetched:", response.data);
         const boughtcourse = response.data.map((course) => ({
           title: course.Title,
           description: course.Description,
@@ -49,22 +55,21 @@ export default function Home() {
           imgSrc: course.Image,
           index: course.Index
         }));
-        setBuyCard([...buyCard, ...boughtcourse]);
+        setBuyCard(boughtcourse);
 
         let newStates = [...buyState];
         boughtcourse.forEach((course) => {
           newStates[course.index] = 1;
-        })
+        });
         setBuyState(newStates);
-        // console.log(buyState)
-      }
-      else {
-        console.log("something went wrong while adding course", response);
+      } else {
+        console.log("No course data found:", response);
       }
     } catch (error) {
-      console.log("BoughtCourses", error)
+      console.log("Error in BoughtCourses:", error);
     }
-  }
+  };
+
   // console.log(buyCard)
   const addCourses = async (course, index) => {
     const newcourse = {

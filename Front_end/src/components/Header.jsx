@@ -8,7 +8,7 @@ export default function Header() {
 
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.user);
-
+  console.log(userData);
   const getUser = async () => {
     try {
       const response = await axios.get("http://localhost:3000/auth/success", { withCredentials: true });
